@@ -39,9 +39,9 @@ public class PracticeFormTests {
         $("#uploadPicture").uploadFromClasspath("mem-kot.jpg");
         $("#currentAddress").setValue("Some address");
         $("#state").click();
-        $("#react-select-3-option-0").click();
+        $("#react-select-3-input").setValue("NCR").pressEnter();
         $("#city").click();
-        $("#react-select-4-option-0").click();
+        $("#react-select-4-input").setValue("Delhi").pressEnter();
         $("#submit").click();
 
         $(".table-responsive").shouldBe(visible);

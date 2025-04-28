@@ -12,18 +12,15 @@ public class ResultsTableComponent {
     private SelenideElement resultTable = $(".table-responsive");
 
 
-    public ResultsTableComponent checkResult(String key, String value) {
+    public void checkResults(String key, String value) {
         resultTable.$(byText(key)).parent().shouldHave(text(value));
-        return this;
     }
 
-    public ResultsTableComponent сheckTableVisibility() {
+    public void сheckTableVisibility() {
         resultTable.shouldBe(visible);
-        return this;
     }
 
-    public ResultsTableComponent checkTableUnvisibility() {
+    public void checkTableUnvisibility() {
         resultTable.shouldNotBe(visible);
-        return this;
     }
 }

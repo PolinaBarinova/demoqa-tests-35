@@ -9,7 +9,6 @@ import pages.components.ResultsTableComponent;
 public class PracticeFormTestsWithPageObjects {
 
     RegistrationPage registrationPage = new RegistrationPage();
-    ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
         @BeforeAll
         static void prepareEnvironment(){
@@ -22,6 +21,7 @@ public class PracticeFormTestsWithPageObjects {
         void fillFormTest() {
 
             registrationPage.openPage()
+                    .removeBanners()
                     .setFirstName("Alina")
                     .setLastName("Inova")
                     .setEmail("test@test.ru")
@@ -34,10 +34,8 @@ public class PracticeFormTestsWithPageObjects {
                     .setAddress("Some address")
                     .setState("NCR")
                     .setCity("Delhi")
-                    .submitForm();
-
-
-            resultsTableComponent.сheckTableVisibility()
+                    .submitForm()
+                    .checkResultTableVisibility()
                     .checkResult("Student Name", "Alina Inova")
                     .checkResult("Student Email", "test@test.ru")
                     .checkResult("Gender", "Female")
@@ -55,13 +53,13 @@ public class PracticeFormTestsWithPageObjects {
         void fillOnlyRequiredFields () {
 
             registrationPage.openPage()
+                    .removeBanners()
                     .setFirstName("Alina")
                     .setLastName("Inova")
                     .setGender("Female")
                     .setUserNumber("7776665544")
-                    .submitForm();
-
-            resultsTableComponent.сheckTableVisibility()
+                    .submitForm()
+                    .checkResultTableVisibility()
                     .checkResult("Student Name", "Alina Inova")
                     .checkResult("Gender", "Female")
                     .checkResult("Mobile", "7776665544");
@@ -73,9 +71,8 @@ public class PracticeFormTestsWithPageObjects {
         void submitEmptyForm () {
 
             registrationPage.openPage()
-                    .submitForm();
-
-            resultsTableComponent.checkTableUnvisibility();
+                    .submitForm()
+                    .checkResultTableUnvisibility();
         }
     }
 

@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import pages.components.CalendarComponent;
+import pages.components.ResultsTableComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -10,6 +11,7 @@ import static com.codeborne.selenide.Selenide.executeJavaScript;
 public class RegistrationPage {
 
     CalendarComponent calendarComponent = new CalendarComponent();
+    ResultsTableComponent resultsTableComponent = new ResultsTableComponent();
 
     private SelenideElement firstNameInput = $("#firstName"),
 
@@ -30,6 +32,10 @@ public class RegistrationPage {
 
     public RegistrationPage openPage() {
         open("/automation-practice-form");
+        return this;
+    }
+
+    public RegistrationPage removeBanners() {
         executeJavaScript("$('footer').remove();");
         executeJavaScript("$('#fixedban').remove();");
         return this;
@@ -101,6 +107,21 @@ public class RegistrationPage {
 
     public RegistrationPage submitForm() {
         submitButton.click();
+        return this;
+    }
+
+    public RegistrationPage checkResult(String key, String value) {
+        resultsTableComponent.checkResults(key, value);
+        return this;
+    }
+
+    public RegistrationPage checkResultTableVisibility() {
+        resultsTableComponent.сheckTableVisibility();
+        return this;
+    }
+
+    public RegistrationPage checkResultTableUnvisibility() {
+        resultsTableComponent.checkTableUnvisibility();
         return this;
     }
 

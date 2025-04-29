@@ -27,7 +27,7 @@ public class PracticeFormTestsWithPageObjects {
                     .setEmail("test@test.ru")
                     .setGender("Female")
                     .setUserNumber("7776665544")
-                    .setDateOfBirth("3", "May", "2005")
+                    .setDateOfBirth("03", "May", "2005")
                     .setSubjects("Maths")
                     .setHobbies("Music")
                     .uploadPicture()

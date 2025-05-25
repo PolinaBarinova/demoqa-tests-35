@@ -8,7 +8,10 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Owner;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import pages.RegistrationPage;
+
+import java.util.Map;
 
 import static io.qameta.allure.Allure.step;
 import static utils.RandomUtils.*;
@@ -33,10 +36,20 @@ public class PracticeFormTestsWithPageObjects {
     String userCity = getRandomCityByState(userState);
 
     @BeforeAll
-    static void prepareEnvironment() {
-        Configuration.browserSize = "1920x1080";
+    static void preparingEnvironment() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.pageLoadStrategy = "eager";
+        Configuration.browserSize = "1920x1080";
+        Configuration.timeout = 10000;
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of(
+                "enableVNC", true,
+                "enableVideo", true
+        ));
+        Configuration.browserCapabilities = capabilities;
+
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @AfterEach
@@ -52,10 +65,9 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с корректно заполненными всеми полями")
-    @Tag("SUBMIT FORM")
+    @Tag("SUBMIT_FORM")
     @Test
     void fillFormTest() {
-        SelenideLogger.addListener("allure", new AllureSelenide());
 
         step("Открыть страницу регистрации", () -> {
             registrationPage.openPage();
@@ -102,7 +114,7 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с корректно заполненными обязательными полями")
-    @Tag("SUBMIT FORM")
+    @Tag("SUBMIT_FORM")
     @Test
     void fillOnlyRequiredFieldsTest() {
 
@@ -136,7 +148,7 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с пустыми полями")
-    @Tag("SUBMIT FORM")
+    @Tag("SUBMIT_FORM")
     @Test
     void submitEmptyFormTest() {
 

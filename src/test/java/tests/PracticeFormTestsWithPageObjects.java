@@ -65,7 +65,7 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с корректно заполненными всеми полями")
-    @Tag("SUBMIT_FORM")
+    @Tag("base")
     @Test
     void fillFormTest() {
 
@@ -114,7 +114,7 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с корректно заполненными обязательными полями")
-    @Tag("SUBMIT_FORM")
+    @Tag("base")
     @Test
     void fillOnlyRequiredFieldsTest() {
 
@@ -148,7 +148,7 @@ public class PracticeFormTestsWithPageObjects {
     @Feature("Отправка формы регистрации")
     @Owner("p.barinova")
     @DisplayName("Отправка формы с пустыми полями")
-    @Tag("SUBMIT_FORM")
+    @Tag("base")
     @Test
     void submitEmptyFormTest() {
 

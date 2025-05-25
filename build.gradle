@@ -44,6 +44,6 @@ tasks.withType(Test) {
 
 task submit_form_test(type: Test) {
     useJUnitPlatform {
-        includeTags("SUBMIT_FORM")
+        includeTags("base")
     }
 }

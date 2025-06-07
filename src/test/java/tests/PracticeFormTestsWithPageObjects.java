@@ -37,10 +37,18 @@ public class PracticeFormTestsWithPageObjects {
 
     @BeforeAll
     static void preparingEnvironment() {
+        Configuration.browser = System.getProperty("browser", "chrome");
+        Configuration.browserSize = System.getProperty("browser.size", "1920x1080");
+        Configuration.browserVersion = System.getProperty("browser.version", "128.0");
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
         Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = "eager";
+        Configuration.remote = String.format(
+                "https://%s:%s@%s/wd/hub",
+                System.getProperty("selenoid.login", "user1"),
+                System.getProperty("selenoid.password", "1234"),
+                System.getProperty("selenoid.url", "selenoid.autotests.cloud")
+        );
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("selenoid:options", Map.<String, Object>of(
